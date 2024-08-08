@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,11 @@ public class GameManager : MonoBehaviour
 
     bool gameStarted = false;
 
+    public GameObject tapText;
+    public TextMeshProUGUI scoreText;
+
+    int score = 0;
+
     // Update is called once per frame
     void Update()
     {
@@ -17,6 +23,7 @@ public class GameManager : MonoBehaviour
             StartSpawning();
 
             gameStarted = true;
+            tapText.SetActive(false);
         }
     }
 
@@ -32,5 +39,9 @@ public class GameManager : MonoBehaviour
         spawnPos.x = Random.Range(-maxX, maxX);
 
         Instantiate(block, spawnPos, Quaternion.identity);
+
+        score++;
+
+        scoreText.text = score.ToString();
     }
 }
